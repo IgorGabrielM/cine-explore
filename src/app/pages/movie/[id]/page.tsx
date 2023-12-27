@@ -44,9 +44,9 @@ export default function Page({ params }: { params: { id: string } }) {
           <Link href="../../" className="bg-[color:#74C69D] p-1 absolute top-3 left-2 rounded-full text-black text-2xl shadow-xl shadow-black">
             <FaArrowAltCircleLeft />
           </Link>
-          <div className="w-8/12 bg-stone-800">
+          <div className="w-8/12 bg-stone-800 rounded-b-lg">
             <div className="flex">
-              <img className='w-56 rounded-t-lg' src={process.env.NEXT_PUBLIC_IMG + movie.poster_path} alt={"Imagem do filme: " + movie.title} />
+              <img className='w-56 rounded-lg m-2 shadow-xl shadow-black' src={process.env.NEXT_PUBLIC_IMG + movie.poster_path} alt={"Imagem do filme: " + movie.title} />
               <div className="p-5">
                 <div className="flex justify-between mt-2">
                   <h1 className="truncate font-bold text-3xl text-[color:#B7E4C7]" data-testid="title">{movie.title}</h1>
@@ -87,7 +87,7 @@ export default function Page({ params }: { params: { id: string } }) {
                   modules={[Scrollbar]}
                   spaceBetween={3}
                   slidesPerView={4}
-                  initialSlide={1}
+                  initialSlide={1.5}
                   scrollbar={{ draggable: true }}
                 >
                   {credits && credits.cast.length > 0 ? (
