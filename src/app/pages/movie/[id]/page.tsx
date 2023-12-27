@@ -5,6 +5,7 @@ import { FaStar } from "react-icons/fa";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { format } from 'date-fns';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -44,49 +45,55 @@ export default function Page({ params }: { params: { id: string } }) {
             <FaArrowAltCircleLeft />
           </Link>
           <div className="w-8/12 bg-stone-800">
-            <img className='w-56 rounded-t-lg' src={process.env.NEXT_PUBLIC_IMG + movie.poster_path} alt={"Imagem do filme: " + movie.title} />
-            <div>
-              <div className="flex justify-between mt-2">
-                <h1 className="truncate font-bold text-2xl">{movie.title}</h1>
-                <div className='px-2 flex items-center gap-2 bg-[color:#74C69D] text-sm rounded-lg shadow-xl shadow-black'>
-                  <FaStar />
-                  <p>{movie.vote_average.toFixed(2)}</p>
+            <div className="flex">
+              <img className='w-56 rounded-t-lg' src={process.env.NEXT_PUBLIC_IMG + movie.poster_path} alt={"Imagem do filme: " + movie.title} />
+              <div className="p-5">
+                <div className="flex justify-between mt-2">
+                  <h1 className="truncate font-bold text-3xl text-[color:#B7E4C7]" data-testid="title">{movie.title}</h1>
+                  <div className='px-2 flex items-center gap-2 bg-[color:#74C69D] text-sm rounded-lg shadow-xl shadow-black'>
+                    <FaStar />
+                    <p data-testid="vote">{movie.vote_average.toFixed(2)}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <p>
-                  <span className="font-bold mr-2">Descrição:</span>
-                  {movie.overview}
-                </p>
-                <p>
-                  <span className="font-bold mr-2">Duração:</span>
-                  {movie.runtime} minutos
-                </p>
-                <p>
-                  <span className="font-bold mr-2">Data de lançamento:</span>
-                  {movie.release_date}</p>
-                <div className="flex gap-2">
-                  <span className="font-bold mr-2">Gêneros:</span>
-                  <div className="flex flex-wrap gap-5">
-                    {movie.genres.length > 0 && movie.genres.map((genr: { id: number, name: string }) => (
-                      <p key={genr.id} className="px-2 bg-[color:#40916C] rounded-lg" >{genr.name}</p>
-                    ))}
+                <div className="w-8/12 flex flex-col gap-2 mt-2">
+                  <p className="text-sm" data-testid="description">
+                    <span className="font-bold mr-2 text-lg">Descrição:</span>
+                    {movie.overview}
+                  </p>
+                  <p data-testid="runtime">
+                    <span className="font-bold mr-2">Duração:</span>
+                    {movie.runtime} minutos
+                  </p>
+                  <p data-testid="release-date">
+                    <span className="font-bold mr-2">Data de lançamento:</span>
+                    {format(new Date(movie.release_date), 'dd/MM/yyyy')}
+                  </p>
+                  <div className="flex gap-2">
+                    <span className="font-bold mr-2">Gêneros:</span>
+                    <div className="flex flex-wrap gap-5" data-testid="gender">
+                      {movie.genres.length > 0 && movie.genres.map((genr: { id: number, name: string }) => (
+                        <p key={genr.id} className="px-2 bg-[color:#40916C] rounded-lg" >{genr.name}</p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="w-full mt-3">
+            </div>
+            <div className="w-full flex justify-center">
+              <div className="w-96 mt-3">
                 <span className="font-bold mr-2">Elenco:</span>
                 <Swiper
                   className="w-96 h-40 flex justify-center mt-2 mb-2"
                   modules={[Scrollbar]}
                   spaceBetween={3}
                   slidesPerView={4}
+                  initialSlide={1}
                   scrollbar={{ draggable: true }}
                 >
                   {credits && credits.cast.length > 0 ? (
                     credits.cast.map((cast: any) => (
                       <SwiperSlide key={cast.cast_id}>
-                        <div className="w-32 flex flex-col items-center">
+                        <div className="w-96 flex flex-col items-center">
                           {cast.profile_path ? (
                             <img
                               className="w-16"
