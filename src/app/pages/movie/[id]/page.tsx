@@ -44,18 +44,18 @@ export default function Page({ params }: { params: { id: string } }) {
           <Link href="../../" className="bg-[color:#74C69D] p-1 absolute top-3 left-2 rounded-full text-black text-2xl shadow-xl shadow-black">
             <FaArrowAltCircleLeft />
           </Link>
-          <div className="w-8/12 bg-stone-800 rounded-b-lg">
-            <div className="flex">
+          <div className="w-10/12 h-fit flex flex-col items-center bg-stone-800 rounded-b-lg lg:w-8/12">
+            <div className="w-full flex flex-col justify-center items-center lg:flex-row">
               <img className='w-56 rounded-lg m-2 shadow-xl shadow-black' src={process.env.NEXT_PUBLIC_IMG + movie.poster_path} alt={"Imagem do filme: " + movie.title} />
-              <div className="p-5">
-                <div className="flex justify-between mt-2">
-                  <h1 className="truncate font-bold text-3xl text-[color:#B7E4C7]" data-testid="title">{movie.title}</h1>
-                  <div className='px-2 flex items-center gap-2 bg-[color:#74C69D] text-sm rounded-lg shadow-xl shadow-black'>
+              <div className="w-full flex flex-col items-center p-5">
+                <div className="w-full flex items-center gap-3 mt-2">
+                  <h1 className="font-bold text-3xl text-[color:#B7E4C7]" data-testid="title">{movie.title}</h1>
+                  <div className='w-fit px-2 py-1 flex items-center gap-2 bg-[color:#74C69D] text-sm rounded-lg shadow-xl shadow-black'>
                     <FaStar />
                     <p data-testid="vote">{movie.vote_average.toFixed(2)}</p>
                   </div>
                 </div>
-                <div className="w-8/12 flex flex-col gap-2 mt-2">
+                <div className="w-11/12 flex flex-col gap-2 mt-2">
                   <p className="text-sm" data-testid="description">
                     <span className="font-bold mr-2 text-lg">Descrição:</span>
                     {movie.overview}
@@ -80,10 +80,10 @@ export default function Page({ params }: { params: { id: string } }) {
               </div>
             </div>
             <div className="w-full flex justify-center">
-              <div className="w-96 mt-3">
+              <div className="w-72 lg:w-96 mt-3">
                 <span className="font-bold mr-2">Elenco:</span>
                 <Swiper
-                  className="w-96 h-40 flex justify-center mt-2 mb-2"
+                  className="w-72 lg:w-96 h-40 flex justify-center mt-2 mb-2"
                   modules={[Scrollbar]}
                   spaceBetween={3}
                   slidesPerView={4}

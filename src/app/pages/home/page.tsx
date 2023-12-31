@@ -20,7 +20,7 @@ export default function HomeMovies() {
 
   return (
     <main className='w-full mx-2'>
-      <h2 className="text-3xl text-center my-5 font-bold text-[color:#D8F3DC]">Aclamados pela crítica:</h2>
+      <h2 className="text-2xl lg:text-3xl text-center my-5 font-bold text-[color:#D8F3DC]">Aclamados pela crítica:</h2>
       <div className="flex flex-wrap gap-2 justify-center" data-testid="list-movies">
         {topMovies.length === 0 &&
           <div role="status" data-testid="loading-movies">
