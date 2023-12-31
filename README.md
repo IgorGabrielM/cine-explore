@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cine-Explore: Catálogo de Filmes
+## Descrição do Projeto
 
-## Getting Started
+O Cine-Explore é um catálogo de filmes desenvolvido utilizando o framework Next.js. Esta aplicação permite aos usuários buscar filmes, explorar informações sobre o elenco e obter diversos detalhes sobre cada produção cinematográfica. O projeto foi desenvolvido com foco na facilidade de uso e na apresentação de informações relevantes aos amantes do cinema.
+Principais Funcionalidades
 
-First, run the development server:
+    - Busca de Filmes: Realize pesquisas por título para encontrar seus filmes favoritos.
+    - Detalhes do Filme: Obtenha informações detalhadas sobre cada filme, incluindo elenco, sinopse e muito mais.
+    - Responsividade: O Cine-Explore é completamente responsivo, proporcionando uma experiência consistente em dispositivos móveis, tablets e desktops.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologias Utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    - Next.js: O projeto foi desenvolvido utilizando Next.js, proporcionando uma experiência de desenvolvimento eficiente e otimizada para SEO.
+    - Jest (Testes Unitários): Foram implementados testes unitários utilizando Jest, garantindo a confiabilidade e qualidade do código.
+    - Cypress (Testes E2E): Os testes end-to-end foram realizados com Cypress, assegurando o funcionamento adequado das funcionalidades em um ambiente integrado.
+    - Tailwind CSS: O Cine-Explore utiliza Tailwind CSS para uma estilização eficiente e fácil manutenção.
+    - Arquitetura DDD (Domain-Driven Design): A aplicação foi estruturada seguindo os princípios de Domain-Driven Design, visando uma arquitetura modular e escalável.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Telas
+### Home
+![Imagem da tela home para desktop](./public/assets/home-screen-lg.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![Imagem da tela home para mobile](./public/assets/home-screen-sm.png)
 
-## Learn More
+---- 
 
-To learn more about Next.js, take a look at the following resources:
+### Pesquisa
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![Imagem de busca](./public/assets/search-movie.lg.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Detalhes dos filmes
 
-## Deploy on Vercel
+![Imagem da tela de detalhes dos filmes para desktop](./public/assets/movie-information-lg.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Imagem da tela de detalhes dos filmes para mobile](./public/assets/movie-information-sm.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+# Como Executar o Projeto Localmente
+
+### Clonar Repositório:
+    
+    git clone https://github.com/seu-usuario/cine-explore.git
+
+### Instalar Dependências:
+
+    cd cine-explore
+    npm install
+
+### Rodar Aplicação:
+
+    npm run dev
+
+    Acesse http://localhost:3000 em seu navegador.
+
+### Testes Unitários (Jest)
+
+    npm run test
+    npm run cypress
+
+
+---
+### Igor Gabriel Martins Ramos

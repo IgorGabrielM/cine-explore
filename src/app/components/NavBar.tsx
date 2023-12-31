@@ -61,7 +61,7 @@ export default function NavBar() {
 
   return (
     <div>
-      <nav className="w-full h-fit py-3 border border-b border-gray-800 flex gap-2 flex-col justify-around items-center lg:flex-r">
+      <nav className="w-full h-fit py-3 border border-b border-gray-800 flex gap-2 flex-col justify-around items-center lg:flex-row">
         <Link href="pages/movie" className="flex items-center gap-2 text-2xl text-[color:#95D5B2] hover:text-[color:#D8F3DC] duration-200">
           <BiCameraMovie /> <span className="font-bold">Filmes</span>
         </Link>
