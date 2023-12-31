@@ -17,20 +17,15 @@ Principais Funcionalidades
     - Arquitetura DDD (Domain-Driven Design): A aplicação foi estruturada seguindo os princípios de Domain-Driven Design, visando uma arquitetura modular e escalável.
 
 # Telas
-### Home
 ![Imagem da tela home para desktop](./public/assets/home-screen-lg.png)
 
-![Imagem da tela home para mobile](./public/assets/home-screen-sm.png)
-
----- 
-
-### Pesquisa
 
 ![Imagem de busca](./public/assets/search-movie.lg.png)
 
-### Detalhes dos filmes
 
 ![Imagem da tela de detalhes dos filmes para desktop](./public/assets/movie-information-lg.png)
+
+![Imagem da tela home para mobile](./public/assets/home-screen-sm.png)
 
 ![Imagem da tela de detalhes dos filmes para mobile](./public/assets/movie-information-sm.png)
 
