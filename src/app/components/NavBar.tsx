@@ -29,13 +29,17 @@ export default function NavBar() {
     try {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=${movieTitle}&page=${page}`);
       setMoviesSearched(response.data);
-      if (moviesSearched.page === 1) {
-        setPages([1, 2, 3]);
-      } else if (moviesSearched.page === moviesSearched.total_pages) {
-        setPages([moviesSearched.page - 1, moviesSearched.page]);
-      }
-      else {
-        setPages([moviesSearched.page - 1, moviesSearched.page, moviesSearched.page + 1]);
+      if (moviesSearched.total_pages === 1) {
+        setPages([1]);
+      } else {
+        if (moviesSearched.page === 1) {
+          setPages([1, 2, 3]);
+        } else if (moviesSearched.page === moviesSearched.total_pages) {
+          setPages([moviesSearched.page - 1, moviesSearched.page]);
+        }
+        else {
+          setPages([moviesSearched.page - 1, moviesSearched.page, moviesSearched.page + 1]);
+        }
       }
     } catch (error) { }
   };
@@ -119,24 +123,33 @@ export default function NavBar() {
 
                       {pages && pages.length ?
                         <div className="flex">
-                          <li onClick={() => selectPage(pages[0])} key={pages[0]}>
-                            <p className={pages[0] !== moviesSearched.page
-                              ? "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 hover:text-[color:#52B788] hover:border-[color:#52B788] hover:border-2 hover:font-bold"
-                              : "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 bg-[color:#52B788] hover:border-[color:#52B788] hover:border-2 font-bold text-black"
-                            }>{pages[0]}</p>
-                          </li>
-                          <li onClick={() => selectPage(pages[1])} key={pages[1]}>
-                            <p className={pages[1] !== moviesSearched.page
-                              ? "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 hover:text-[color:#52B788] hover:border-[color:#52B788] hover:border-2 hover:font-bold"
-                              : "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 bg-[color:#52B788] hover:border-[color:#52B788] hover:border-2 font-bold text-black"
-                            }>{pages[1]}</p>
-                          </li>
-                          <li onClick={() => selectPage(pages[2])} key={pages[2]}>
-                            <p className={pages[2] !== moviesSearched.page
-                              ? "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 hover:text-[color:#52B788] hover:border-[color:#52B788] hover:border-2 hover:font-bold"
-                              : "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 bg-[color:#52B788] hover:border-[color:#52B788] hover:border-2 font-bold text-black"
-                            }>{pages[2]}</p>
-                          </li>
+                          {moviesSearched.total_pages !== 1 && pages[0] ?
+                            <li onClick={() => selectPage(pages[0])} key={pages[0]}>
+                              <p className={pages[0] !== moviesSearched.page
+                                ? "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 hover:text-[color:#52B788] hover:border-[color:#52B788] hover:border-2 hover:font-bold"
+                                : "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 bg-[color:#52B788] hover:border-[color:#52B788] hover:border-2 font-bold text-black"
+                              }>{pages[0]}</p>
+                            </li>
+                            : <></>
+                          }
+                          {moviesSearched.total_pages !== 1 && pages[1] ?
+                            <li onClick={() => selectPage(pages[1])} key={pages[1]}>
+                              <p className={pages[1] !== moviesSearched.page
+                                ? "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 hover:text-[color:#52B788] hover:border-[color:#52B788] hover:border-2 hover:font-bold"
+                                : "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 bg-[color:#52B788] hover:border-[color:#52B788] hover:border-2 font-bold text-black"
+                              }>{pages[1]}</p>
+                            </li>
+                            : <></>
+                          }
+                          {moviesSearched.total_pages !== 1 && pages[2] ?
+                            <li onClick={() => selectPage(pages[2])} key={pages[2]}>
+                              <p className={pages[2] !== moviesSearched.page
+                                ? "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 hover:text-[color:#52B788] hover:border-[color:#52B788] hover:border-2 hover:font-bold"
+                                : "flex items-center justify-center px-3 h-8 leading-tight border border-stone-700 bg-[color:#52B788] hover:border-[color:#52B788] hover:border-2 font-bold text-black"
+                              }>{pages[2]}</p>
+                            </li>
+                            : <></>
+                          }
                         </div>
                         : <div className="w-32 h-full flex justify-center items-center">
                           <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-[color:#52B788]" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
