@@ -12,7 +12,7 @@ describe('Home Movies Page', () => {
     cy.get('[data-testid="movie-card"]').should('have.length', 20);
   });
 
-  it('Click on movie', () => {
+  it('Should click on movie', () => {
     cy.get('[data-testid="list-movies"]').should('be.visible');
     cy.get('[data-testid="loading-movies"]').should('not.exist');
     cy.get('[data-testid="movie-card"]').should('have.length', 20);

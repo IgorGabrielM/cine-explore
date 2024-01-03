@@ -13,9 +13,14 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Link from "next/link";
 
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { ICast, ICredit } from "app/interfaces/credit";
+import { IMovieInformation } from "app/interfaces/movie";
+
 export default function Page({ params }: { params: { id: string } }) {
-  const [movie, setMovie]: [any, any] = useState();
-  const [credits, setCredits]: [any, any] = useState();
+  const [movie, setMovie] = useState<IMovieInformation>();
+  const [credits, setCredits] = useState<ICredit>();
 
   const getTopRatedMovies = async (url: string) => {
     try {
@@ -28,7 +33,9 @@ export default function Page({ params }: { params: { id: string } }) {
     try {
       const response = await axios.get(url);
       setCredits(response.data)
-    } catch (err) { }
+    } catch (err) {
+      toast.error('Ocorreu um erro ao carregar o filme!');
+    }
   }
 
   useEffect(() => {
@@ -39,6 +46,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   return (
     <div className="flex justify-center">
+      <ToastContainer />
       {movie ? (
         <div className="flex justify-center">
           <Link href="../../" className="bg-[color:#74C69D] p-1 absolute top-3 left-2 rounded-full text-black text-2xl shadow-xl shadow-black">
@@ -91,7 +99,7 @@ export default function Page({ params }: { params: { id: string } }) {
                   scrollbar={{ draggable: true }}
                 >
                   {credits && credits.cast.length > 0 ? (
-                    credits.cast.map((cast: any) => (
+                    credits.cast.map((cast: ICast) => (
                       <SwiperSlide key={cast.cast_id}>
                         <div className="w-96 flex flex-col items-center">
                           {cast.profile_path ? (

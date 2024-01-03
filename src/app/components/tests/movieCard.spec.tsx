@@ -2,6 +2,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import MovieCard from '../MovieCard';
 
+const movieIdForTest = 278
+
 test('Verifica se o link está funcionando corretamente', () => {
     // Mock do objeto movie
     const movie = {
@@ -18,7 +20,7 @@ test('Verifica se o link está funcionando corretamente', () => {
 
     const linkElement = screen.getByTestId('movie-card');
 
-    expect(linkElement).toHaveAttribute('href', 'pages/movie/278');
+    expect(linkElement).toHaveAttribute('href', `pages/movie/${movieIdForTest}`);
 
     fireEvent.click(linkElement);
 });

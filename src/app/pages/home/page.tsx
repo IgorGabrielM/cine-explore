@@ -3,14 +3,20 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieCard from 'app/components/MovieCard';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { IMovie } from 'app/interfaces/movie';
+
 export default function HomeMovies() {
-  const [topMovies, setTopMovies]: [any[], any] = useState([]);
+  const [topMovies, setTopMovies] = useState<IMovie[]>([]);
 
   const getTopRatedMovies = async (url: string) => {
     try {
       const response = await axios.get(url);
       setTopMovies(response.data.results);
-    } catch (error) { }
+    } catch (error) {
+      toast.error('Ocorreu um erro ao carregar os filmes!');
+    }
   };
 
   useEffect(() => {
@@ -20,6 +26,7 @@ export default function HomeMovies() {
 
   return (
     <main className='w-full mx-2'>
+      <ToastContainer />
       <h2 className="text-2xl lg:text-3xl text-center my-5 font-bold text-[color:#D8F3DC]">Aclamados pela crítica:</h2>
       <div className="flex flex-wrap gap-2 justify-center" data-testid="list-movies">
         {topMovies.length === 0 &&

@@ -4,7 +4,7 @@ describe('Movie Page', () => {
     cy.visit('')
   })
 
-  it('Click movie', () => {
+  it('Should click movie', () => {
     cy.get('h2').should('have.text', 'Aclamados pela crítica:');
     cy.get('svg[aria-hidden="true"]').should('not.exist');
     cy.get('[data-testid="list-movies"]').should('exist');
@@ -12,7 +12,7 @@ describe('Movie Page', () => {
     cy.get('[data-testid="movie-card"]').first().click();
   });
 
-  it('should display movie details with correct information', () => {
+  it('Should display movie details with correct information', () => {
     cy.visit('/pages/movie/238')
 
     cy.get('[data-testid="title"]').should('exist').and('not.be.empty');
