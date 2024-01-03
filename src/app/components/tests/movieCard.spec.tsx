@@ -8,7 +8,7 @@ test('Verifica se o link está funcionando corretamente', () => {
     // Mock do objeto movie
     const movie = {
         movie: {
-            id: '278',
+            id: 278,
             poster_path: '/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg',
             title: 'The Shawshank Redemption',
             vote_average: 8.708,

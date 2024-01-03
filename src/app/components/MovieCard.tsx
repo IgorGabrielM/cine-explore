@@ -2,7 +2,7 @@ import { IMovie } from 'app/interfaces/movie';
 import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 
-export default function MovieCard(movie: { id: number, movie: IMovie }, showLink = true) {
+export default function MovieCard(movie: { id?: number, movie: IMovie, className?: string }, showLink = true) {
     return (
         <Link href={"pages/movie/" + movie.movie.id} data-testid="movie-card">
             <section className="w-56 h-96 pb-3 bg-stone-800 m-2 rounded-xl text-center relative hover:scale-105 duration-150">
