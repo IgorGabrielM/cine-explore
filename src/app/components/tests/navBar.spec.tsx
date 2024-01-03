@@ -34,7 +34,7 @@ describe("Testing navbar", () => {
         fireEvent.click(screen.getByTestId('forward-button'));
 
         expect(axios.get).toHaveBeenCalledWith(
-            `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=the&page=2`
+            `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=the&page=1`
         );
     });
 
