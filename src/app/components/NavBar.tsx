@@ -81,12 +81,9 @@ export default function NavBar({ }: NavBarProps) {
   return (
     <div>
       <nav className="w-full h-fit py-3 border border-b border-gray-800 flex gap-2 flex-col justify-around items-center lg:flex-row">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-2xl text-[color:#95D5B2] hover:text-[color:#D8F3DC] duration-200"
-        >
+        <p className="flex items-center gap-2 text-2xl text-[color:#95D5B2] hover:text-[color:#D8F3DC] duration-200">
           <BiCameraMovie /><span className="font-bold">Filmes</span>
-        </Link>
+        </p >
 
         <form className="px-5 flex items-center border border-gray-600 rounded-full">
           <input
