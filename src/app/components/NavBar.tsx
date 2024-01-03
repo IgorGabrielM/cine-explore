@@ -1,4 +1,5 @@
 "use client"
+import { act } from "@testing-library/react";
 import { IMovieApiResponse } from "app/interfaces/movieApiResponse";
 import axios from "axios";
 import Link from "next/link";
@@ -38,25 +39,33 @@ export default function NavBar({ }: NavBarProps) {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=${movieTitle}&page=${page}`
       );
-      const searchedMovies: IMovieApiResponse = response.data;
-      setMoviesSearched(searchedMovies);
+      if (response && response.data) {
 
-      const totalPages = searchedMovies.total_pages;
-      if (totalPages === 1) {
-        setPages([1]);
-      } else {
-        if (searchedMovies.page === 1) {
-          setPages([1, 2, 3]);
-        } else if (searchedMovies.page === totalPages) {
-          setPages([searchedMovies.page - 1, searchedMovies.page]);
+        const searchedMovies: IMovieApiResponse = response.data;
+        act(() => {
+          setMoviesSearched(searchedMovies);
+        });
+
+        const totalPages = searchedMovies.total_pages;
+        if (totalPages === 1) {
+          act(() => {
+            setPages([1, 2, 3]);
+          });
         } else {
-          setPages([
-            searchedMovies.page - 1,
-            searchedMovies.page,
-            searchedMovies.page + 1,
-          ]);
+          if (searchedMovies.page === 1) {
+            setPages([1, 2, 3]);
+          } else if (searchedMovies.page === totalPages) {
+            setPages([searchedMovies.page - 1, searchedMovies.page]);
+          } else {
+            setPages([
+              searchedMovies.page - 1,
+              searchedMovies.page,
+              searchedMovies.page + 1,
+            ]);
+          }
         }
       }
+
     } catch (error) {
       console.error("Error searching movies:", error);
     }
