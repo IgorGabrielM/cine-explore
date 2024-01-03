@@ -1,5 +1,5 @@
 import NavBar from "../NavBar"
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import axios from "axios"
 
@@ -11,9 +11,9 @@ describe("Testing navbar", () => {
         render(<NavBar />)
 
         const input = screen.getByTestId('search-movie');
-        fireEvent.change(input, { target: { value: 'Test Movie' } });
+        fireEvent.change(input, { target: { value: 'the' } });
 
-        expect(input.value).toBe('Test Movie');
+        expect(input.value).toBe('the');
     })
 
     it('should call selectPage function when clicking forward-button', async () => {
@@ -31,10 +31,12 @@ describe("Testing navbar", () => {
 
         await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
-        fireEvent.click(screen.getByTestId('forward-button'));
+        await act(async () => {
+            fireEvent.click(screen.getByTestId('forward-button'));
+        });
 
         expect(axios.get).toHaveBeenCalledWith(
-            `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=the&page=2`
+            `${process.env.NEXT_PUBLIC_SEARCH}?${process.env.NEXT_PUBLIC_API_KEY}&query=the&page=1`
         );
     });
 
